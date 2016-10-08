@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://www.mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.hurry.data.mapper.loss.LossMapper">
+
+	<resultMap id="LossResultMap" type="Loss">
+		<id property="id" column="id" />
+		<result property="orderGoodsId" column="orderGoodsId"/>
+		<collection property="orderGoods" column="orderGoodsId" ofType="BuyOrderGoods" select="cn.hurry.data.mapper.order.buy.BuyOrderGoodsMapper.selectBuyOrderGoodsById"></collection>
+		<collection property="user" column="userId" ofType="User" select="cn.hurry.data.mapper.user.UserMapper.selectUserById"></collection>
+	</resultMap>
+
+	<insert id="insertLoss" parameterType="Loss">
+		INSERT INTO loss
+		(orderGoodsId,number,remark,createDate,userId)
+		VALUES
+		(#{orderGoodsId},#{number},#{remark},#{createDate},#{userId})
+	</insert>
+
+	<sql id="where">
+			<if test="orderGoodsId != null">
+				AND loss.orderGoodsId=#{orderGoodsId}
+			</if>
+			<if test="number != null">
+				AND loss.number=#{number}
+			</if>
+			<if test="userId != null">
+				AND loss.userId=#{userId}
+			</if>
+			<if test="code != null">
+				AND (buy_order.code=#{code} OR buy_order_goods.orderId=#{code})
+			</if>
+			<if test="createDateStart!=null">
+				AND loss.createDate&gt;=#{createDateStart}
+			</if>
+			<if test="createDateEnd!=null">
+				AND loss.createDate&lt;=#{createDateEnd}
+			</if>
+			<if test="storeId !=null">
+				AND buy_order.storeId=#{storeId}
+			</if>
+			<if test="goodsId !=null">
+				AND buy_order_goods.goodsId=#{goodsId}
+			</if>
+			
+			<if test="ids !=null">
+				AND  loss.id IN(${ids})
+			</if>
+	</sql>
+
+	<update id="updateLoss" parameterType="Loss">
+		UPDATE loss
+		<set>
+			<if test="orderGoodsId != 0">
+				orderGoodsId=#{orderGoodsId},
+			</if>
+			<if test="remark != null">
+				remark=#{remark},
+			</if>
+			number=#{number}
+		</set>
+		WHERE id=#{id}
+	</update>
+
+	<delete id="deleteLoss" parameterType="Loss">
+		DELETE FROM loss WHERE id = #{id}
+	</delete>
+
+	<select id="selectLossById" parameterType="int" resultMap="LossResultMap">
+		SELECT * FROM loss WHERE id = #{id}
+	</select>
+	
+	<select id="countLossByMap" parameterType="map" resultType="int">
+		SELECT count(loss.id) FROM loss
+		LEFT JOIN buy_order_goods ON buy_order_goods.`id`=loss.`orderGoodsId`
+		LEFT JOIN buy_order ON buy_order.`id`=buy_order_goods.`orderId`
+		<where>
+			<include refid="where"/>
+		</where>
+	</select>
+
+	<select id="selectLossByMap" parameterType="map" resultMap="LossResultMap">
+		SELECT loss.* FROM loss
+		LEFT JOIN buy_order_goods ON buy_order_goods.`id`=loss.`orderGoodsId`
+		LEFT JOIN buy_order ON buy_order.`id`=buy_order_goods.`orderId`
+		<where>
+			<include refid="where"/>
+		</where>
+		<if test="sortField!=null and sortField!=''">
+			ORDER BY loss.${sortField} ${sortOrder}
+		</if>
+		<if test="sortField!=null or sortField!=''">
+			ORDER BY loss.id DESC
+		</if>
+		<if test="firstResult != null">
+			<if test="maxResults != null">
+				LIMIT ${firstResult},${maxResults}
+			</if>
+		</if>
+	</select>
+</mapper> 

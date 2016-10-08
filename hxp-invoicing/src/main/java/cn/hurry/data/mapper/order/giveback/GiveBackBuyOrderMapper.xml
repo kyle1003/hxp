@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://www.mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.hurry.data.mapper.order.giveback.GiveBackBuyOrderMapper">
+
+	<resultMap id="GiveBackBuyOrderResultMap" type="GiveBackBuyOrder">
+		<id property="id" column="id" />
+		<result property="storeId" column="storeId"/>
+		<association property="orderGoods" column="id" select="cn.hurry.data.mapper.order.giveback.GiveBackBuyOrderGoodsMapper.selectGiveBackBuyOrderGoodsByOrderId"></association>
+		<collection property="user" column="userId" ofType="User" select="cn.hurry.data.mapper.user.UserMapper.selectUserById"></collection>
+		<collection property="store" column="storeId" ofType="Store" select="cn.hurry.data.mapper.store.StoreMapper.selectStoreById"></collection>
+	</resultMap>
+	
+	<sql id="selectWhere">
+		<if test="status != null">
+			AND status=${status}
+		</if>
+	</sql>
+
+	<insert id="insertGiveBackBuyOrder" parameterType="GiveBackBuyOrder">
+		INSERT INTO `order` 
+		(id,storeId,remark,createDate,userId,status,type,pay)
+		VALUES
+		(#{id},#{storeId},#{remark},#{createDate},#{userId},#{status},#{type},#{pay})
+	</insert>
+
+	<update id="updateGiveBackBuyOrder" parameterType="GiveBackBuyOrder">
+		UPDATE `give_back_buy_order` SET status=#{status} WHERE id=#{id}
+	</update>
+
+	<delete id="deleteGiveBackBuyOrder" parameterType="GiveBackBuyOrder">
+		DELETE FROM `give_back_buy_order` WHERE id = #{id}
+	</delete>
+
+	<select id="selectGiveBackBuyOrderById" parameterType="String" resultMap="GiveBackBuyOrderResultMap">
+		SELECT * FROM `give_back_buy_order` WHERE id = #{id}
+	</select>
+
+	<select id="selectGiveBackBuyOrderByMap" parameterType="map" resultMap="GiveBackBuyOrderResultMap">
+		SELECT * FROM `give_back_buy_order`
+		<where>
+			<include refid="selectWhere"/>
+		</where>
+	</select>
+	
+	<select id="countGiveBackBuyOrderByMap" parameterType="map" resultType="int">
+		SELECT count(id) FROM `give_back_buy_order`
+		<where>
+			<include refid="selectWhere"/>
+		</where>
+	</select>
+	
+	<select id="selectMaxId" resultType="string">
+		SELECT MAX(id) AS maxId FROM `give_back_buy_order`
+	</select>
+	
+</mapper> 

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://www.mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.hurry.data.mapper.unit.NormsMapper">
+
+	<resultMap id="NormsResultMap" type="Norms">
+		<id property="id" column="id" />
+	</resultMap>
+
+	<insert id="insertNorms" parameterType="Norms">
+		INSERT INTO norms (name)VALUES(#{name})
+	</insert>
+
+	<update id="updateNorms" parameterType="Norms">
+		UPDATE norms set name=#{name} WHERE id=#{id}
+	</update>
+
+	<delete id="deleteNorms" parameterType="Norms">
+		DELETE FROM Norms WHERE id = #{id}
+	</delete>
+
+	<select id="selectNormsById" parameterType="int" resultMap="NormsResultMap">
+		SELECT * FROM Norms WHERE id = #{id}
+	</select>
+
+	<select id="selectNormsByMap" parameterType="map" resultMap="NormsResultMap">
+		SELECT * FROM Norms
+	</select>
+</mapper> 

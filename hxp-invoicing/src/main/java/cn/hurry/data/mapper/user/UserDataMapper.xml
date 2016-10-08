@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://www.mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 用户类映射配置文件 -->
+<mapper namespace="cn.hurry.data.mapper.user.UserDataMapper">
+
+	<resultMap id="UserDataResultMap" type="UserData" >
+		<id property="id" column="id" />
+	</resultMap>
+	
+	<sql id="dynamicUpdate">
+		<if test="name != null">
+			name = #{name},
+		</if>
+		<if test="memoryCode != null">
+			memoryCode = #{memoryCode},
+		</if>
+		<if test="sex != null">
+			sex = #{sex},
+		</if>
+		<if test="hometown != null">
+			hometown = #{hometown},
+		</if>
+		<if test="zzmm != null">
+			zzmm = #{zzmm},
+		</if>
+		<if test="degree != null">
+			degree = #{degree},
+		</if>
+		<if test="tel != null">
+			tel = #{tel},
+		</if>
+		<if test="lastChangeDatetime != null">
+			lastChangeDatetime = #{lastChangeDatetime},
+		</if>
+		<if test="changeId != null">
+			changeId = #{changeId},
+		</if>
+	</sql>
+	
+	<insert id="insertUserData" parameterType="UserData">
+		INSERT user_data
+		(id,name,sex,hometown,zzmm,degree,tel,createDatetime,lastChangeDatetime,changeId)
+		VALUES
+		(#{id},#{name},#{sex},#{hometown},#{zzmm},#{degree},#{tel},#{createDatetime},#{lastChangeDatetime},#{changeId})
+	</insert>
+
+	<update id="updateUserDataById" parameterType="Map">
+		UPDATE user_data
+		<set>
+			<include refid="dynamicUpdate" />
+		</set>
+		WHERE id = #{id}
+	</update>
+	
+	<select id="selectUserDataById" parameterType="int" resultMap="UserDataResultMap">
+		SELECT * FROM user_data WHERE id = #{id}
+	</select>
+	
+	<delete id="deleteUserDataById" parameterType="int">
+		DELETE FROM user_data WHERE id = #{id}
+	</delete>
+</mapper> 

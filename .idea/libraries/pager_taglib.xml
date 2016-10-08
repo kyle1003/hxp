@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="pager-taglib">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/hxp-invoicing/src/main/webapp/WEB-INF/lib/pager-taglib.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

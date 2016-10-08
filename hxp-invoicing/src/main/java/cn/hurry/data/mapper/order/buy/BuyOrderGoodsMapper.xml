@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://www.mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.hurry.data.mapper.order.buy.BuyOrderGoodsMapper">
+
+	<resultMap id="BuyOrderGoodsResultMap" type="BuyOrderGoods">
+		<id property="id" column="id" />
+		<result property="goodsId" column="goodsId"/>
+		<result property="orderId" column="orderId"/>
+		<collection property="goods" column="goodsId" ofType="Goods" select="cn.hurry.data.mapper.goods.GoodsMapper.selectGoodsById"></collection>
+		<collection property="order" column="orderId" ofType="BuyOrder" select="cn.hurry.data.mapper.order.buy.BuyOrderMapper.selectBuyOrderById"></collection>
+	</resultMap>
+
+	<sql id="where">
+			<if test="goodsId != null">
+				AND buy_order_goods.goodsId=#{goodsId}
+			</if>
+			<if test="surplusNumberNot != null">
+				AND buy_order_goods.surplusNumber!=#{surplusNumberNot}
+			</if>
+			<if test="status != null">
+				AND buy_order.status=#{status}
+			</if>
+			<if test="storeId != null">
+				AND buy_order.storeId=#{storeId}
+			</if>
+			<if test="userId != null">
+				AND  buy_order.userId =#{userId}
+			</if>
+			<if test="createDateStart!=null">
+				AND buy_order.createDate &gt;=#{createDateStart}
+			</if>
+			<if test="createDateEnd!=null">
+				AND buy_order.createDate &lt;=#{createDateEnd}
+			</if>
+			<if test="orderId !=null">
+				AND buy_order_goods.orderId=#{orderId}
+			</if>
+			<if test="shelfLifeDate !=null">
+				AND buy_order_goods.shelfLife &lt;= #{shelfLifeDate}
+			</if>
+	</sql>
+
+	<insert id="insertBuyOrderGoods" parameterType="BuyOrderGoods">
+		INSERT INTO buy_order_goods 
+		(goodsId,orderId,price,number,surplusNumber,productionDate,shelfLife,productionBatchNumber,approvalDocument)
+		VALUES
+		(#{goodsId},#{orderId},#{price},#{number},#{number},#{productionDate},#{shelfLife},#{productionBatchNumber},#{approvalDocument})
+	</insert>
+
+	<update id="updateBuyOrderGoods" parameterType="BuyOrderGoods">
+		UPDATE buy_order_goods SET price=#{price},number=#{number},surplusNumber=#{surplusNumber} WHERE id=#{id}
+	</update>
+
+	<delete id="deleteBuyOrderGoods" parameterType="BuyOrderGoods">
+		DELETE FROM buy_order_goods WHERE id = #{id}
+	</delete>
+
+	<select id="selectBuyOrderGoodsById" parameterType="int" resultMap="BuyOrderGoodsResultMap">
+		SELECT * FROM buy_order_goods WHERE id = #{id}
+	</select>
+	
+	<select id="selectBuyOrderGoodsByOrderId" parameterType="string" resultMap="BuyOrderGoodsResultMap">
+		SELECT * FROM buy_order_goods WHERE `orderId` = #{orderId}
+	</select>
+
+	<select id="selectBuyOrderGoodsByMap" parameterType="map" resultMap="BuyOrderGoodsResultMap">
+		SELECT buy_order_goods.* FROM buy_order_goods 
+		LEFT JOIN buy_order ON buy_order.`id`=buy_order_goods.`orderId`
+		<where>
+			<include refid="where"/>
+		</where>
+		<if test="sortField!=null and sortField!=''">
+			ORDER BY ${sortField} ${sortOrder}
+		</if>
+		<if test="firstResult != null">
+			<if test="maxResults != null">
+				LIMIT ${firstResult},${maxResults}
+			</if>
+		</if>
+	</select>
+	
+	<select id="countBuyOrderGoodsByMap" parameterType="map" resultType="int">
+		SELECT count(buy_order_goods.id) FROM buy_order_goods 
+		LEFT JOIN buy_order ON buy_order.`id`=buy_order_goods.`orderId`
+		<where>
+			<include refid="where"/>
+		</where>
+	</select>
+	
+</mapper> 

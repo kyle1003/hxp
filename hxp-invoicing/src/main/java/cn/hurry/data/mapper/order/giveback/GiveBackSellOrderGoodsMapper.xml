@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://www.mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.hurry.data.mapper.order.giveback.GiveBackSellOrderGoodsMapper">
+
+	<resultMap id="GiveBackSellOrderGoodsResultMap" type="GiveBackSellOrderGoods">
+		<id property="id" column="id" />
+		<result property="goodsId" column="goodsId"/>
+		<result property="orderId" column="orderId"/>
+		<collection property="goods" column="goodsId" ofType="Goods" select="cn.hurry.data.mapper.goods.GoodsMapper.selectGoodsById"></collection>
+		<collection property="order" column="orderId" ofType="Order" select="cn.hurry.data.mapper.order.giveback.GiveBackSellOrderMapper.selectGiveBackSellOrderById"></collection>
+	</resultMap>
+
+	<insert id="insertGiveBackSellOrderGoods" parameterType="GiveBackSellOrderGoods">
+		INSERT INTO give_back_sell_order_goods (goodsId,orderId,price,number)VALUES(#{goodsId},#{orderId},#{price},#{number})
+	</insert>
+
+	<update id="updateGiveBackSellOrderGoods" parameterType="GiveBackSellOrderGoods">
+		UPDATE give_back_sell_order_goods SET price=#{price},number=#{number} WHERE id=#{id}
+	</update>
+
+	<delete id="deleteGiveBackSellOrderGoods" parameterType="GiveBackSellOrderGoods">
+		DELETE FROM give_back_sell_order_goods WHERE id = #{id}
+	</delete>
+
+	<select id="selectGiveBackSellOrderGoodsById" parameterType="int" resultMap="GiveBackSellOrderGoodsResultMap">
+		SELECT * FROM give_back_sell_order_goods WHERE id = #{id}
+	</select>
+	
+	<select id="selectGiveBackSellOrderGoodsByOrderId" parameterType="string" resultMap="GiveBackSellOrderGoodsResultMap">
+		SELECT * FROM give_back_sell_order_goods WHERE orderId = #{id}
+	</select>
+
+	<select id="selectGiveBackSellOrderGoodsByMap" parameterType="map" resultMap="GiveBackSellOrderGoodsResultMap">
+		SELECT * FROM give_back_sell_order_goods
+	</select>
+	
+</mapper> 

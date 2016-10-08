@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://www.mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.hurry.data.mapper.succession.SuccessionInfoMapper">
+
+	<resultMap id="SuccessionInfoResultMap" type="SuccessionInfo">
+		<id property="id" column="id" />
+	</resultMap>
+
+	<sql id="selectWhere">
+			<if test="date != null">
+				AND succession_info.date=#{date}
+			</if>
+			<if test="createDateStart != null">
+				AND succession_info.date &gt;=#{createDateStart}
+			</if>
+			<if test="createDateEnd != null">
+				AND succession_info.date &lt;=#{createDateEnd}
+			</if>
+			<if test="code != null">
+				AND (succession.sellOrderIds LIKE CONCAT(CONCAT('%',#{code},'%')))  
+			</if>
+			<if test="userId != null">
+				AND succession.takeOverUserId=#{userId}
+			</if>
+			<if test="status != null">
+				AND succession_info.status=#{status}
+			</if>
+			<if test="statusNot != null">
+				AND succession_info.status!=#{statusNot}
+			</if>
+	</sql>
+
+	<insert id="insertSuccessionInfo" parameterType="SuccessionInfo">
+		INSERT INTO succession_info
+		(id,date,status)
+		VALUES
+		(#{id},#{date},#{status})
+	</insert>
+
+	<update id="updateSuccessionInfo" parameterType="SuccessionInfo">
+		UPDATE succession_info 
+		<set>
+			status=#{status}
+		</set>
+		WHERE id=#{id}
+	</update>
+
+	<delete id="deleteSuccessionInfo" parameterType="SuccessionInfo">
+		DELETE FROM succession_info WHERE id = #{id}
+	</delete>
+
+	<select id="selectSuccessionInfoById" parameterType="int" resultMap="SuccessionInfoResultMap">
+		SELECT * FROM succession_info WHERE id = #{id}
+	</select>
+
+	<select id="selectLastInsertId" parameterType="int" resultType="int">
+		SELECT LAST_INSERT_ID()
+	</select>
+
+	<select id="selectSuccessionInfoByMap" parameterType="map" resultMap="SuccessionInfoResultMap">
+		SELECT DISTINCT succession_info.* FROM succession_info
+		LEFT JOIN succession ON succession.successionInfoId=succession_info.id
+		<where>
+			<include refid="selectWhere"/>
+		</where>
+		<if test="sortField!=null and sortField!=''">
+			ORDER BY succession_info.${sortField} ${sortOrder}
+		</if>
+		<if test="sortField==null or sortField==''">
+			ORDER BY id DESC
+		</if>
+		<if test="firstResult != null">
+			<if test="maxResults != null">
+				LIMIT ${firstResult},${maxResults}
+			</if>
+		</if>
+	</select>
+	
+	<select id="countSuccessionInfoByMap" parameterType="map" resultType="int">
+		SELECT count(succession_info.id) FROM succession_info
+		LEFT JOIN succession ON succession.successionInfoId=succession_info.id
+		<where>
+			<include refid="selectWhere"/>
+		</where>
+		<if test="sortField!=null and sortField!=''">
+			ORDER BY succession_info.${sortField} ${sortOrder}
+		</if>
+		<if test="sortField==null and sortField==''">
+			ORDER BY id DESC
+		</if>
+	</select>
+</mapper> 

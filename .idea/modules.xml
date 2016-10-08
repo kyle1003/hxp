@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/hxp.iml" filepath="$PROJECT_DIR$/hxp.iml" />
+      <module fileurl="file://$PROJECT_DIR$/hxp-admin/hxp-admin.iml" filepath="$PROJECT_DIR$/hxp-admin/hxp-admin.iml" />
+      <module fileurl="file://$PROJECT_DIR$/hxp-invoicing/hxp-invoicing.iml" filepath="$PROJECT_DIR$/hxp-invoicing/hxp-invoicing.iml" />
+      <module fileurl="file://$PROJECT_DIR$/hxp-mvnfhm/hxp-mvnfhm.iml" filepath="$PROJECT_DIR$/hxp-mvnfhm/hxp-mvnfhm.iml" />
+      <module fileurl="file://$PROJECT_DIR$/hxp-online/hxp-online.iml" filepath="$PROJECT_DIR$/hxp-online/hxp-online.iml" />
+    </modules>
+  </component>
+</project>

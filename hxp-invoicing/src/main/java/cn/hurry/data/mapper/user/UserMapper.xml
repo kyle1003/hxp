@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://www.mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 用户类映射配置文件 -->
+<mapper namespace="cn.hurry.data.mapper.user.UserMapper">
+
+	<resultMap id="UserResultMap" type="User" >
+		<id property="id" column="id" />
+		<collection property="userData" ofType="UserData" column="id" select="cn.hurry.data.mapper.user.UserDataMapper.selectUserDataById"/>
+	</resultMap>
+
+	<sql id="dynamicUpdate">
+		<if test="username != null">
+			username=#{username},
+			</if>
+		<if test="password != null">
+			password=#{password},
+		</if>
+		<if test="remark != null">
+			remark=#{remark},
+		</if>
+		<if test="managerGroupId != null">
+			<if test="managerGroupId ==0">
+				managerGroupId=null,
+			</if>
+			<if test="managerGroupId !=0">
+				managerGroupId=#{managerGroupId},
+			</if>
+		</if>
+		<if test="createDatetime != null">
+			createDatetime=#{createDatetime},
+		</if>
+		<if test="isValid != null">
+			isValid=#{isValid}
+		</if>
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<if test="key != null">
+			AND username = #{key}
+		</if>
+		<if test="isAdminNot != null">
+			isAdmin!=#{isAdminNot}
+		</if>
+	</sql>
+
+	<!-- 增加用户 -->
+	<insert id="insertUser" parameterType="User">
+		INSERT INTO user
+		(username,password,remark,isAdmin,managerGroupId,createDatetime,isValid)
+		VALUES
+		(#{username},#{password},#{remark},#{isAdmin},#{managerGroupId},#{createDatetime},#{isValid})
+	</insert>
+	
+	<!-- 根据用户名查找用户 -->
+	<select id="selectUserByUsername" parameterType="String" resultMap="UserResultMap">
+		SELECT * FROM user WHERE username=#{username}
+	</select>
+	
+	<select id="selectUserList" parameterType="int" resultMap="UserResultMap">
+		SELECT * FROM user WHERE managerGroupId=#{id}
+	</select>
+	
+	<!-- 根据用户名和密码查找用户 -->
+	<select id="selectUserByUsernameAndPass" parameterType="User" resultMap="UserResultMap">
+		SELECT * FROM user 
+		WHERE 
+		userName=#{username} AND password=#{password}
+	</select>
+	
+	<!-- 根据用户ID查找用户 -->
+	<select id="selectUserById" parameterType="int" resultMap="UserResultMap">
+		SELECT * FROM user WHERE id=#{id}
+	</select>
+
+	<!-- 查询所有用户 -->
+	<select id="selectAllUser" resultMap="UserResultMap">
+		SELECT * FROM user 
+	</select>
+	
+	<select id="selectValidUser" resultMap="UserResultMap">
+		SELECT * FROM user WHERE isValid = 1
+	</select>
+	
+	<select id="selectUser" parameterType="Map" resultMap="UserResultMap">
+		SELECT DISTINCT user.*  FROM user 
+			left  join user_data on 
+			user.id=user_data.id
+		<where>
+			<include refid="dynamicWhere" />
+		</where>
+		<if test="sortField!=null and sortField!=''">
+			ORDER BY ${sortField} ${sortOrder}
+		</if>
+		<if test="firstResult != null">
+			<if test="maxResults != null">
+				LIMIT ${firstResult},${maxResults}
+			</if>
+		</if>
+	</select>
+	
+	<select id="selectUserCount" parameterType="Map" resultType="int">
+		SELECT COUNT(*) FROM user
+		<where>
+			<include refid="dynamicWhere" />
+		</where>
+	</select>
+	
+	<select id="selectPurchaseImpUsers" resultMap="UserResultMap">
+		SELECT DISTINCT user.* FROM user,purchase_imp WHERE user.id=purchase_imp.changeId AND purchase_imp.isCheck = 0
+	</select>
+	
+	<!-- 根据id更新用户 -->
+	<update id="updateUserById" parameterType="User" flushCache="true">
+		UPDATE user
+		<set>
+			<include refid="dynamicUpdate" />
+		</set>
+		WHERE id=#{id}
+	</update>
+	
+	<!-- 根据id删除用户(OK) -->
+	<delete id="deleteUserById" parameterType="int" flushCache="true">
+		DELETE FROM user WHERE id=#{id}
+	</delete>
+	
+	<!-- 获取最后同一条添加的ID -->
+	<select id="selectLastInsertId" resultType="int">
+		SELECT LAST_INSERT_ID()
+	</select>
+</mapper> 

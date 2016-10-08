@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://www.mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.hurry.data.mapper.inventory.InventoryGoodsMapper">
+
+	<resultMap id="InventoryGoodsResultMap" type="InventoryGoods">
+		<id property="id" column="id" />
+		<result property="userId" column="userId"/>
+		<result property="storeId" column="storeId"/>
+		<collection property="inventory" column="inventoryId" ofType="Inventory" select="cn.hurry.data.mapper.inventory.InventoryMapper.selectInventoryById"></collection>
+		<collection property="goods" column="goodsId" ofType="Goods" select="cn.hurry.data.mapper.goods.GoodsMapper.selectGoodsById"></collection>
+	</resultMap>
+
+	<insert id="insertInventoryGoods" parameterType="InventoryGoods">
+		INSERT INTO inventory_goods
+		(inventoryId,goodsId,storeNumber,realNumber,money,sumMoney)
+		VALUES
+		(#{inventoryId},#{goodsId},#{storeNumber},#{realNumber},#{money},#{sumMoney})
+	</insert>
+
+	<update id="updateInventoryGoods" parameterType="InventoryGoods">
+		UPDATE inventory_goods SET realNumber=#{realNumber} WHERE id=#{id}
+	</update>
+
+	<delete id="deleteInventoryGoods" parameterType="InventoryGoods">
+		DELETE FROM inventory_goods WHERE id = #{id}
+	</delete>
+
+	<select id="selectInventoryGoodsById" parameterType="int" resultMap="InventoryGoodsResultMap">
+		SELECT * FROM inventory_goods WHERE id = #{id}
+	</select>
+	
+	<select id="selectInventoryGoodsByInventoryId" parameterType="int" resultMap="InventoryGoodsResultMap">
+		SELECT * FROM inventory_goods WHERE inventoryId = #{id}
+	</select>
+
+	<select id="selectInventoryGoodsByMap" parameterType="map" resultMap="InventoryGoodsResultMap">
+		SELECT * FROM inventory_goods
+		<where>
+			<if test="goodsId != null">
+				AND goodsId=#{goodsId}
+			</if>
+			<if test="inventoryId != null">
+				AND inventoryId=#{inventoryId}
+			</if>
+		</where>
+	</select>
+</mapper> 

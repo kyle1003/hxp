@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="hxp-mvnfhm:war">
+    <output-path>$PROJECT_DIR$/hxp-mvnfhm/target</output-path>
+    <root id="archive" name="hxp-mvnfhm.war">
+      <element id="artifact" artifact-name="hxp-mvnfhm:war exploded" />
+    </root>
+  </artifact>
+</component>

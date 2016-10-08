@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="MOBO_MERCHANT">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/hxp-invoicing/src/main/webapp/WEB-INF/lib/MOBO_MERCHANT.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

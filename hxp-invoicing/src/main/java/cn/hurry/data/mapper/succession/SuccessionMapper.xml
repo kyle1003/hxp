@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://www.mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.hurry.data.mapper.succession.SuccessionMapper">
+
+	<resultMap id="SuccessionResultMap" type="Succession">
+		<id property="id" column="id" />
+	</resultMap>
+
+	<sql id="selectWhere">
+			<if test="handOverSuccessionId != null">
+				AND handOverSuccessionId=#{handOverSuccessionId}
+			</if>
+			<if test="takeOverUserId != null">
+				AND takeOverUserId=#{takeOverUserId}
+			</if>
+			<if test="sellOrderIds != null">
+				AND (sellOrderIds LIKE CONCAT(CONCAT('%',#{sellOrderIds},'%')))  
+			</if>
+			<if test="takeOverTime != null">
+				AND takeOverTime=#{takeOverTime}
+			</if>
+			<if test="handOverTime != null">
+				AND handOverTime=#{handOverTime}
+			</if>
+			<if test="status != null">
+				AND status=#{status}
+			</if>
+			<if test="statusNot != null">
+				AND status!=#{statusNot}
+			</if>
+			<if test="successionInfoId != null">
+				AND successionInfoId=#{successionInfoId}
+			</if>
+	</sql>
+
+	<insert id="insertSuccession" parameterType="Succession">
+		INSERT INTO succession
+		(id,handOverSuccessionId,takeOverUserId,sellOrderIds,takeOverTime,status,successionInfoId,handOverTime)
+		VALUES
+		(#{id},#{handOverSuccessionId},#{takeOverUserId},#{sellOrderIds},#{takeOverTime},#{status},#{successionInfoId},#{handOverTime})
+	</insert>
+
+	<update id="updateSuccession" parameterType="Succession">
+		UPDATE succession 
+		<set>
+			<if test="sellOrderIds!=null">
+				sellOrderIds=#{sellOrderIds},
+			</if>
+			<if test="handOverTime !=null">
+				handOverTime=#{handOverTime},
+			</if>
+			<if test="remark !=null">
+				remark=#{remark},
+			</if>
+			status=#{status}
+		</set>
+		WHERE id=#{id}
+	</update>
+
+	<delete id="deleteSuccession" parameterType="Succession">
+		DELETE FROM succession WHERE id = #{id}
+	</delete>
+
+	<select id="selectSuccessionById" parameterType="int" resultMap="SuccessionResultMap">
+		SELECT * FROM succession WHERE id = #{id}
+	</select>
+
+	<select id="selectLastInsertId" parameterType="int" resultType="int">
+		SELECT LAST_INSERT_ID()
+	</select>
+
+	<select id="selectSuccessionByMap" parameterType="map" resultMap="SuccessionResultMap">
+		SELECT * FROM succession
+		<where>
+			<include refid="selectWhere"/>
+		</where>
+		<if test="sortField!=null and sortField!=''">
+			ORDER BY ${sortField} ${sortOrder}
+		</if>
+		<if test="sortField==null and sortField==''">
+			ORDER BY id DESC
+		</if>
+		<if test="firstResult != null">
+			<if test="maxResults != null">
+				LIMIT ${firstResult},${maxResults}
+			</if>
+		</if>
+	</select>
+	
+	<select id="countSuccessionByMap" resultType="int" parameterType="map" >
+		SELECT count(id) FROM succession
+		<where>
+			<include refid="selectWhere"/>
+		</where>
+		<if test="sortField!=null and sortField!=''">
+			ORDER BY ${sortField} ${sortOrder}
+		</if>
+		<if test="sortField==null and sortField==''">
+			ORDER BY id DESC
+		</if>
+	</select>
+</mapper> 

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://www.mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 管理组映射配置文件 -->
+<mapper namespace="cn.hurry.data.mapper.operate.ManagerGroupMapper">
+
+	<resultMap id="ManagerGroupResultMap" type="ManagerGroup">
+		<id property="id" column="id" />
+		<collection property="users" column="id" ofType="User"  select="cn.hurry.data.mapper.user.UserMapper.selectUserList" />
+		<collection property="operateGroups" column="id" ofType="OperateGroup" select="cn.hurry.data.mapper.operate.OperateGroupMapper.selectOperateGroupList1" />
+	</resultMap>
+	
+	<sql id="dynamicUpdate">
+		<if test="name != null">
+			name=#{name},
+		</if>
+		<if test="discription != null">
+			discription=#{discription},
+		</if>
+		<if test="addTime != null">
+			addTime=#{addTime}
+		</if>
+	</sql>
+
+	<!-- 增加用户 -->
+	<insert id="insertManagerGroup" parameterType="ManagerGroup" keyProperty="id" useGeneratedKeys="true" flushCache="true">
+		INSERT
+		manager_group(name,discription,addTime)
+		VALUES(#{name},#{discription},#{addTime})
+	</insert>
+
+	<!-- 根据用户ID查找管理组 -->
+	<select id="selectManagerGroupById" parameterType="int" resultMap="ManagerGroupResultMap">
+		SELECT * FROM manager_group WHERE id=#{id}
+	</select>
+
+	<!-- 根据管理组名称查找管理组 -->
+	<select id="selectManagerGroupByName" parameterType="String" resultType="ManagerGroup">
+		SELECT * FROM manager_group WHERE name=#{name}
+	</select>
+
+	<!-- 查询所有管理组 -->
+	<select id="selectAllManagerGroup" resultMap="ManagerGroupResultMap">
+		SELECT * FROM
+		manager_group ORDER BY addTime
+	</select>
+	
+	<!-- 根据id更新管理组 -->
+	<update id="updateManagerGroup" parameterType="ManagerGroup"
+		flushCache="true">
+		UPDATE manager_group
+		<set>
+			<include refid="dynamicUpdate" />
+		</set>
+		WHERE id=#{id}
+	</update>
+	
+	<!-- 根据id删除管理组(OK) -->
+	<delete id="deleteManagerGroup" parameterType="int" flushCache="true">
+		DELETE
+		FROM
+		manager_group WHERE id=#{id}
+	</delete>
+</mapper> 

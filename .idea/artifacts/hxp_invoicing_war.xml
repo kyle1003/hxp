@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="hxp-invoicing:war">
+    <output-path>$PROJECT_DIR$/hxp-invoicing/target</output-path>
+    <root id="archive" name="hxp-invoicing.war">
+      <element id="artifact" artifact-name="hxp-invoicing:war exploded" />
+    </root>
+  </artifact>
+</component>

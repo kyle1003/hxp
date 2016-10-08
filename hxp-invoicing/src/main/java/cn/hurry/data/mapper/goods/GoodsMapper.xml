@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://www.mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.hurry.data.mapper.goods.GoodsMapper">
+
+	<resultMap id="GoodsResultMap" type="Goods">
+		<id property="id" column="id" />
+		<result property="unitId" column="unitId"/>
+		<result property="normsId" column="normsId"/>
+		<result property="goodsTypeId" column="goodsTypeId"/>
+		<!-- 
+		<collection property="unit" column="unitId" ofType="Unit" select="cn.hurry.data.mapper.unit.UnitMapper.selectUnitById"></collection>
+		<collection property="norms" column="normsId" ofType="Norms" select="cn.hurry.data.mapper.unit.NormsMapper.selectNormsById"></collection>
+		<collection property="goodsType" column="goodsTypeId" ofType="GoodsType" select="cn.hurry.data.mapper.goods.GoodsTypeMapper.selectGoodsTypeById"></collection>
+		 -->
+	</resultMap>
+	
+	<insert id="insertGoods" parameterType="Goods">
+		INSERT INTO goods
+		(code,name,normsId,unitId,sellPrice,buyPrice,remark,goodsTypeId,number,dose,manufacturers,medicineName,doseType,jgCode)
+		VALUES
+		(#{code},#{name},#{normsId},#{unitId},#{sellPrice},#{buyPrice},#{remark},#{goodsTypeId},#{number},#{dose},#{manufacturers},#{medicineName},#{doseType},#{jgCode})
+	</insert>
+
+	<update id="updateGoods" parameterType="Goods">
+		UPDATE goods
+		<set>
+			<if test="code != null">
+				code=#{code},
+			</if>
+			<if test="name != null">
+				name=#{name},
+			</if>
+			<if test="dose != null">
+				dose=#{dose},
+			</if>
+			<if test="manufacturers != null">
+				manufacturers=#{manufacturers},
+			</if>
+			<if test="medicineName != null">
+				medicineName=#{medicineName},
+			</if>
+			<if test="normsId != 0">
+				normsId=#{normsId},
+			</if>
+			<if test="goodsTypeId != 0">
+				goodsTypeId=#{goodsTypeId},
+			</if>
+			<if test="unitId != 0">
+				unitId=#{unitId},
+			</if>
+			<if test="doseType != null">
+				doseType=#{doseType},
+			</if>
+			<if test="jgCode != null">
+				jgCode=#{jgCode},
+			</if>
+			sellPrice=#{sellPrice},
+			buyPrice=#{buyPrice},
+			remark=#{remark},
+		</set>
+		WHERE id=#{id}
+	</update>
+	
+	<update id="updateGoodsNumber" parameterType="Goods">
+		UPDATE goods SET number=#{number} WHERE id=#{id}
+	</update>
+
+	<delete id="deleteGoods" parameterType="Goods">
+		DELETE FROM goods WHERE id = #{id}
+	</delete>
+
+	<select id="selectGoodsById" parameterType="int" resultMap="GoodsResultMap">
+		SELECT * FROM goods WHERE id = #{id}
+	</select>
+
+	<select id="selectGoodsByMap" parameterType="map" resultMap="GoodsResultMap">
+		SELECT DISTINCT goods.* FROM goods
+		LEFT JOIN buy_order_goods ON goods.`id`=buy_order_goods.`goodsId`
+		<where>
+			<if test="code != null">
+				AND goods.code=#{code}
+			</if>
+			<if test="name != null">
+				AND goods.name=#{name}
+			</if>
+			<if test="normsId != null">
+				AND goods.normsId=#{normsId}
+			</if>
+			<if test="unitId != null">
+				AND goods.unitId=#{unitId}
+			</if>
+			<if test="havaByOrder != null">
+				AND buy_order_goods.goodsId>0
+			</if>
+			<if test="ids != null">
+				AND goods.id IN (${ids})
+			</if>
+		</where>
+	</select>
+</mapper> 

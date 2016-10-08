@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://www.mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 授权映射配置文件 -->
+<!-- @author zh.sqy@qq.com -->
+<mapper namespace="cn.hurry.data.mapper.authorize.AuthorizeMapper">
+	
+	<sql id="dynamicUpdate">
+		<if test="code != null">
+			code=#{code}
+		</if>
+	</sql>
+	
+	<insert id="insertAuthorize" parameterType="Authorize">
+		INSERT authorize
+		(code)
+		VALUES
+		(#{code})
+	</insert>
+
+	<update id="updateAuthorize" parameterType="Authorize">
+		UPDATE authorize 
+		<set>
+			<include refid="dynamicUpdate" />
+		</set>
+	</update>
+	
+	<select id="selectAuthorize" resultType="Authorize">
+		SELECT * FROM authorize
+	</select>
+	
+</mapper> 
