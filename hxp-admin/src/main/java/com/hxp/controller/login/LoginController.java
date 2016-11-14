@@ -20,37 +20,6 @@ import javax.servlet.http.HttpSession;
 @Controller
 @RequestMapping("/login")
 public class LoginController {
-
-    @Autowired
-    private UserService userService;
-
-    /***
-     * 用户登录
-     * @return
-     */
-    @RequestMapping("/loginAdmin")
-    @ResponseBody
-    public Object login(User user,HttpSession session){
-
-        Result result = new Result();
-
-        try {
-            User loginUser = userService.findUserByUsername(user);
-            if ( loginUser != null ){
-                session.setAttribute(Const.SESS_P_USER,loginUser);
-                result.setSuccess(true);
-            }else{
-                result.setSuccess(false);
-            }
-
-            return result;
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return"main" ;
-    }
-
-
     /**
      * 跳转登陆页面
      * @return
@@ -60,5 +29,4 @@ public class LoginController {
         request.setAttribute("referer",referer);
         return "login/login";
     }
-
 }

@@ -23,21 +23,11 @@
         <setting name="lazyLoadTriggerMethods" value="equals,clone,hashCode,toString" />
     </settings>
 
-    <!-- 在这个文件放置一些全局性的配置-->
+    <!-- 在这个文件放置一些全局性的配置,通过使用别名，可以缩短类名的长度，但是只能在配置文件中使用。-->
     <typeAliases>
         <typeAlias type="com.hxp.model.User" alias="UserModel"/>
     </typeAliases>
-
 </configuration>
-
-
-
-        <!--<typeAliases>-->
-        <!--<typeAlias type="com.hxp.model.Person" alias="Person"/>-->
-        <!--</typeAliases>-->
-        <!--<mappers>-->
-        <!--<mapper resource="com/hxp/dao/mapping/UserDao/PersonMapper.xml" />-->
-        <!--</mappers>-->
 
 
 

@@ -158,16 +158,6 @@
                     "username":$("#username").val(),
                     "password":$("#password").val()
                 },
-                beforeSend:function(){
-                    return true;
-                },
-                success:function(r){
-                    if(r.success){
-                        window.location.href="main.ftl";
-                    }else{
-                        alert("用户登录失败,请重新输入");
-                    }
-                }
             });
         });
     });

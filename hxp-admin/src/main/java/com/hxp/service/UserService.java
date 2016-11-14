@@ -7,5 +7,6 @@ import com.hxp.model.User;
  */
 public interface UserService {
 
-    public User findUserByUsername(User user) throws Exception;
+    //通过用户名及密码核查用户登录
+    public User checkLogin(String username,String password);
 }

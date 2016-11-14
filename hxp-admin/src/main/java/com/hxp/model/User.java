@@ -10,7 +10,7 @@ import java.io.Serializable;
     /**用户ID*/
         private Integer id;
     /**用户名称*/
-        private String name;
+        private String username;
     /**用户登陆名*/
         private  String loginName;
     /**用户密码*/
@@ -50,13 +50,7 @@ import java.io.Serializable;
         }
 
 
-        public String getName() {
-            return name;
-        }
 
-        public void setName(String name) {
-            this.name = name;
-        }
 
         public String getPassword() {
             return password;
@@ -168,5 +162,13 @@ import java.io.Serializable;
 
     public void setType(Integer type) {
         this.type = type;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 }

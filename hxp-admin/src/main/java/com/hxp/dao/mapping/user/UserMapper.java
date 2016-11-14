@@ -1,6 +1,5 @@
 package com.hxp.dao.mapping.user;
 
-
 import com.hxp.model.User;
 
 /**
@@ -12,5 +11,5 @@ public interface UserMapper  {
      * 根据用户名查询用户
      * @return 用户
      */
-    public User findUserByUsername(User user);
+    public User getUserByName(String username);
 }
