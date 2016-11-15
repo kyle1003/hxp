@@ -50,12 +50,12 @@
        </bean> -->
 
  <!--静态文件访问的方式两种写法-->
-    <!--第一种<mvc:resources mapping="/**" location="/"/>-->
+    <!--第一种<mvc:resources mapper="/**" location="/"/>-->
 
     <!--第二种-->
-    <!--<mvc:resources mapping="/images/**" location="/resources/images/" cache-period="31556926"/>-->
-    <!--<mvc:resources mapping="/js/**" location="/resources/js/" cache-period="31556926"/>-->
-    <!--<mvc:resources mapping="/css/**" location="/resources/css/" cache-period="31556926"/>-->
+    <!--<mvc:resources mapper="/images/**" location="/resources/images/" cache-period="31556926"/>-->
+    <!--<mvc:resources mapper="/js/**" location="/resources/js/" cache-period="31556926"/>-->
+    <!--<mvc:resources mapper="/css/**" location="/resources/css/" cache-period="31556926"/>-->
 
 
     <!-- ===================================================== -->
@@ -139,7 +139,7 @@
 
     <!--MapperScanner配置。自动去搜索mapper里的对象，并注入-->
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-        <property name="basePackage" value="com.hxp.dao.mapping"/>
+        <property name="basePackage" value="com.hxp.mapper"/>
     </bean>
 
     <bean name="handlerAdapter" class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter" >
@@ -190,7 +190,7 @@
        HttpServletResponse response, Object handler, Exception ex)
     <mvc:interceptors >
      <mvc:interceptor>
-            <mvc:mapping path="/UserDao/*" />  /UserDao/*
+            <mvc:mapper path="/UserDao/*" />  /UserDao/*
             <bean class="com.mvc.MyInteceptor"></bean>
         </mvc:interceptor>
     </mvc:interceptors>
@@ -221,8 +221,8 @@
     <!-- 对静态资源文件的访问  方案二 （二选一）/images/**映射到ResourceHttpRequestHandler进行处理，
     location指定静态资源的位置.可以是web application根目录下、jar包里面，这样可以把静态资源压缩到jar包中。
     cache-period 可以使得静态资源进行web cache
-    <mvc:resources mapping="/images/**" location="/images/" cache-period="31556926"/>
-    <mvc:resources mapping="/js/**" location="/js/" cache-period="31556926"/>
-    <mvc:resources mapping="/css/**" location="/css/" cache-period="31556926"/>-->
+    <mvc:resources mapper="/images/**" location="/images/" cache-period="31556926"/>
+    <mvc:resources mapper="/js/**" location="/js/" cache-period="31556926"/>
+    <mvc:resources mapper="/css/**" location="/css/" cache-period="31556926"/>-->
 
 </beans>

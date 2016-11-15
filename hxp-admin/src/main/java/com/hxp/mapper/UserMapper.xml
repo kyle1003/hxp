@@ -2,18 +2,19 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.hxp.dao.mapping.user.UserMapper">
+<mapper namespace="com.hxp.mapper.UserMapper">
     <resultMap id="userMap" type="com.hxp.model.User">
+        <id property="id" column="id"/>
         <result property="username" column="username"/>
         <result property="password" column="password"/>
     </resultMap>
 
     <!-- 根据用户名和密码查找用户,此处Select标签的id值对应Mapper类中方法名-->
-    <select id="getUserByName" parameterType="String" resultMap="userMapper">
+    <select id="getUserByName" parameterType="String" resultMap="userMap">
         <!-- 此处写sql语句,#{Mapper类传入的参数} -->
         SELECT * FROM SYSTEM_USER
 		WHERE
-		userName=#{username}
+		username=#{username}
     </select>
 
 </mapper>

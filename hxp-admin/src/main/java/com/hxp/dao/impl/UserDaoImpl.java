@@ -1,7 +1,7 @@
 package com.hxp.dao.impl;
 
-import com.hxp.dao.mapping.user.UserMapper;
-import com.hxp.dao.user.UserDao;
+import com.hxp.mapper.UserMapper;
+import com.hxp.dao.UserDao;
 import com.hxp.model.User;
 import org.springframework.stereotype.Repository;
 
@@ -18,7 +18,6 @@ public class UserDaoImpl implements UserDao {
    @Repository(value=”userDao”)注解是告诉Spring，让Spring创建一个名字叫“userDao”的UserDaoImpl实例。
    当Service需要使用Spring创建的名为“userDao”的UserDaoImpl实例时，
    就可以使用@Resource(name =”userDao”)注解告诉Spring，Spring把创建好的userDao注入给Service即可。*/
-
 
     //注解引用Mapper资源
     @Resource(name ="userMapper")

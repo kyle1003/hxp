@@ -1,4 +1,4 @@
-package com.hxp.dao.mapping.user;
+package com.hxp.mapper;
 
 import com.hxp.model.User;
 
