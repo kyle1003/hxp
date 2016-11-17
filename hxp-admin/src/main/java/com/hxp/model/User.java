@@ -40,89 +40,21 @@ import java.io.Serializable;
     /** 用户类型,1:老板,2:经理,3：职员*/
         private Integer type;
 
+    public Integer getId() {
+        return id;
+    }
 
-        public Integer getId() {
-            return id;
-        }
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
-        public void setId(Integer id) {
-            this.id = id;
-        }
+    public String getUsername() {
+        return username;
+    }
 
-
-
-
-        public String getPassword() {
-            return password;
-        }
-
-        public void setPassword(String password) {
-            this.password = password;
-        }
-
-        public String getLastLoginTime() {
-            return lastLoginTime;
-        }
-
-        public void setLastLoginTime(String lastLoginTime) {
-            this.lastLoginTime = lastLoginTime;
-        }
-
-        public String getLoginTime() {
-            return loginTime;
-        }
-
-        public void setLoginTime(String loginTime) {
-            this.loginTime = loginTime;
-        }
-
-        public String getLastLoginIp() {
-            return lastLoginIp;
-        }
-
-        public void setLastLoginIp(String lastLoginIp) {
-            this.lastLoginIp = lastLoginIp;
-        }
-
-        public String getIp() {
-            return ip;
-        }
-
-        public void setIp(String ip) {
-            this.ip = ip;
-        }
-
-        public String getEmail() {
-            return email;
-        }
-
-        public void setEmail(String email) {
-            this.email = email;
-        }
-
-        public String getMobilePhone() {
-            return mobilePhone;
-        }
-
-        public void setMobilePhone(String mobilePhone) {
-            this.mobilePhone = mobilePhone;
-        }
-
-        public Integer getStatus() {
-            return status;
-        }
-
-        public void setStatus(Integer status) {
-            this.status = status;
-        }
-
-        public String getCreateTime() {
-            return createTime;
-        }
-
-        public void setCreateTime(String createTime) {
-            this.createTime = createTime;
-        }
+    public void setUsername(String username) {
+        this.username = username;
+    }
 
     public String getLoginName() {
         return loginName;
@@ -130,6 +62,14 @@ import java.io.Serializable;
 
     public void setLoginName(String loginName) {
         this.loginName = loginName;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public Integer getGender() {
@@ -148,6 +88,70 @@ import java.io.Serializable;
         this.idCardNo = idCardNo;
     }
 
+    public String getLastLoginTime() {
+        return lastLoginTime;
+    }
+
+    public void setLastLoginTime(String lastLoginTime) {
+        this.lastLoginTime = lastLoginTime;
+    }
+
+    public String getLoginTime() {
+        return loginTime;
+    }
+
+    public void setLoginTime(String loginTime) {
+        this.loginTime = loginTime;
+    }
+
+    public String getLastLoginIp() {
+        return lastLoginIp;
+    }
+
+    public void setLastLoginIp(String lastLoginIp) {
+        this.lastLoginIp = lastLoginIp;
+    }
+
+    public String getIp() {
+        return ip;
+    }
+
+    public void setIp(String ip) {
+        this.ip = ip;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getMobilePhone() {
+        return mobilePhone;
+    }
+
+    public void setMobilePhone(String mobilePhone) {
+        this.mobilePhone = mobilePhone;
+    }
+
+    public Integer getStatus() {
+        return status;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
+    }
+
+    public String getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(String createTime) {
+        this.createTime = createTime;
+    }
+
     public String getHeadUrl() {
         return headUrl;
     }
@@ -162,13 +166,5 @@ import java.io.Serializable;
 
     public void setType(Integer type) {
         this.type = type;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
     }
 }

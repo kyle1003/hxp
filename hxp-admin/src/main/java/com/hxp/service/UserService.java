@@ -1,6 +1,8 @@
 package com.hxp.service;
 
 
+import com.hxp.model.User;
+
 /**
  * Created by Administrator on 2016/9/4.
  */
@@ -8,5 +10,5 @@ package com.hxp.service;
 public interface UserService {
 
     //通过用户名及密码核查用户登录
-    public boolean checkLogin(String username,String password);
+    public User checkLogin(String username, String password);
 }
