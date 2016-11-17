@@ -14,7 +14,6 @@ import javax.servlet.http.HttpServletRequest;
  * Created by Administrator on 2016/11/14.
  */
 @Controller
-@Scope("prototype")
 @RequestMapping("/user")
 public class UserController {
 
