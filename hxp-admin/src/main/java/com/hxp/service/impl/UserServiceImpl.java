@@ -6,8 +6,8 @@ import com.hxp.model.User;
 import com.hxp.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import javax.annotation.Resource;
 
 /**
  * Created by Administrator on 2016/9/4.
@@ -20,9 +20,10 @@ import javax.annotation.Resource;
 这样当Action需要使用UserServiceImpl的的实例时,就可以由Spring创建好的”userService”注入给Action：在Action只需要声明一个名字叫“userService”的变量来接收由Spring注入的”userService”即可*/
 /**@Service("UserService") 注解用于标示此类为业务层组件,在使用时会被注解的类会自动由spring进行注入,无需我们创建实例*/
 @Service("UserService")
+@Transactional
 public class UserServiceImpl implements UserService {
 
-    @Resource
+    @Autowired
     private UserDao userDao;
 
    /*登录验证*/
