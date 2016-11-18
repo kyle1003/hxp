@@ -11,7 +11,7 @@ import javax.annotation.Resource;
 /**
  * Created by Administrator on 2016/11/14.
  */
-@Repository("userDao")
+@Repository
 public class UserDaoImpl implements UserDao {
 
 /**   @Repository对应数据访问层Bean
@@ -20,7 +20,7 @@ public class UserDaoImpl implements UserDao {
    就可以使用@Resource(name =”userDao”)注解告诉Spring，Spring把创建好的userDao注入给Service即可。*/
 
     //注解引用Mapper资源
-    @Resource(name ="userMapper")
+    @Resource
     private UserMapper userMapper;
 
     /* 根据用户名查找用户对象*/

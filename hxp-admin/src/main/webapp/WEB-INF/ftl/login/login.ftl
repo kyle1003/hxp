@@ -151,14 +151,7 @@
 <script type="text/javascript">
     $(function () {
         $("#login").click(function () {
-            $.ajax({
-                type:"post",
-                url:"login/loginAdmin.hxp"
-                data:{
-                    "username":$("#username").val(),
-                    "password":$("#password").val()
-                },
-            });
+          var username =document.getElementById("username").value()
         });
     });
 
