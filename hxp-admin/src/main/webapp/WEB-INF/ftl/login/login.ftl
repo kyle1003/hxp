@@ -151,7 +151,17 @@
 <script type="text/javascript">
     $(function () {
         $("#login").click(function () {
-          var username =document.getElementById("username").value()
+          var username =document.getElementById("username").value;
+          var password = document.getElementById("password").value;
+            if(username == null || username ==""){
+                alert("请正确输入账号");
+                return false;
+            }
+            if（password == null ||password == "" ）{
+                alert("请正确输入密码");
+                return false;
+            }
+            return true;
         });
     });
 
