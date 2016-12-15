@@ -304,8 +304,8 @@
 	
 	
 	/**
-	 * Create a mapping object that allows camel case parameters to be looked up
-	 * for their Hungarian counterparts. The mapping is stored in a private
+	 * Create a mapper object that allows camel case parameters to be looked up
+	 * for their Hungarian counterparts. The mapper is stored in a private
 	 * parameter called `_hungarianMap` which can be accessed on the source object.
 	 *  @param {object} o
 	 *  @memberof DataTable#oApi
@@ -1074,7 +1074,7 @@
 	
 	
 	/**
-	 * Get the data for a given cell from the internal cache, taking into account data mapping
+	 * Get the data for a given cell from the internal cache, taking into account data mapper
 	 *  @param {object} settings dataTables settings object
 	 *  @param {int} rowIdx aoData row id
 	 *  @param {int} colIdx Column index
@@ -1274,7 +1274,7 @@
 		}
 		else
 		{
-			/* Array or flat object mapping */
+			/* Array or flat object mapper */
 			return function (data, type) { // row and meta also passed, but not used
 				return data[mSource];
 			};
@@ -1384,7 +1384,7 @@
 		}
 		else
 		{
-			/* Array or flat object mapping */
+			/* Array or flat object mapper */
 			return function (data, val) { // meta is also passed in, but not used
 				data[mSource] = val;
 			};
@@ -1651,7 +1651,7 @@
 			row.nTr = nTr;
 			row.anCells = cells;
 	
-			/* Use a private property on the node to allow reserve mapping from the node
+			/* Use a private property on the node to allow reserve mapper from the node
 			 * to the aoData array for fast look up
 			 */
 			nTr._DT_RowIndex = iRow;

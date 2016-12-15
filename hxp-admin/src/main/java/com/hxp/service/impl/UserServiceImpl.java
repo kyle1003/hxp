@@ -27,12 +27,12 @@ public class UserServiceImpl implements UserService {
     private UserDao userDao;
 
    /*登录验证*/
-    public User checkLogin(String username, String password) {
+    public boolean isExist(String username, String password) {
         //根据用户名实例化用户对象
         User user = userDao.findUserByName(username);
         if(user != null && user.getPassword().equals(password)){
-            return user;
+            return true;
         }
-        return null;
+        return true;
     }
 }

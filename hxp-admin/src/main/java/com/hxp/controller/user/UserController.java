@@ -37,33 +37,4 @@ public class UserController {
     RequestMapping是一个用来处理请求地址映射的注解，可用于类或方法上。用于类上，表示类中的所有响应请求的方法都是以该地址作为父路径。*/
 
 
-    @Autowired
-    private UserService userService;
-
-    /**
-     * 跳转登陆页面
-     * @return
-     */
-    @RequestMapping( "/toAdminlogin")
-    public String toAdminlogin(String referer,HttpServletRequest request){
-        request.setAttribute("referer",referer);
-        return "login/login";
-    }
-
-
-    /**
-     * 账号密码登录
-     * @return
-     */
-    @RequestMapping(value ="/login",method = RequestMethod.POST)
-    public String login(User user,Model model) throws Exception {
-       user = userService.checkLogin(user.getUsername(), user.getPassword());
-        if (user != null) {
-            model.addAttribute(user);
-            return "main/main";//登录之后进入的主页面
-        } else {
-            //若不对，则将错误信息显示到错误页面
-            return "error/error";//跳转的错误页面
-        }
-    }
 }

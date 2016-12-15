@@ -397,7 +397,7 @@ var prettyPrint;
       var capturedGroups = [];
   
       // Walk over and identify back references to build the capturedGroups
-      // mapping.
+      // mapper.
       for (var i = 0, groupIndex = 0; i < n; ++i) {
         var p = parts[i];
         if (p === '(') {
@@ -481,7 +481,7 @@ var prettyPrint;
   }
 
   /**
-   * Split markup into a string of source code and an array mapping ranges in
+   * Split markup into a string of source code and an array mapper ranges in
    * that string to the text nodes in which they appear.
    *
    * <p>

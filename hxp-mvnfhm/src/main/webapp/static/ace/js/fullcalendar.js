@@ -8297,7 +8297,7 @@ function getDraggedElMeta(el) {
 function BasicView(calendar) {
 	View.call(this, calendar); // call the super-constructor
 	this.dayGrid = new DayGrid(this);
-	this.coordMap = this.dayGrid.coordMap; // the view's date-to-cell mapping is identical to the subcomponent's
+	this.coordMap = this.dayGrid.coordMap; // the view's date-to-cell mapper is identical to the subcomponent's
 }
 
 

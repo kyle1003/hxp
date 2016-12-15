@@ -63904,7 +63904,7 @@ Ext.define('Ext.data.reader.Reader', {
         
         
         '<tpl if="clientIdProp">',
-        '    if (record && (internalId = {[ this.createFieldAccessExpression(\{mapping: values.clientIdProp\}, null, "source") ]})) {\n',
+        '    if (record && (internalId = {[ this.createFieldAccessExpression(\{mapper: values.clientIdProp\}, null, "source") ]})) {\n',
         '        record.{["internalId"]} = internalId;\n',
         '    }\n',
         '</tpl>',
@@ -64075,7 +64075,7 @@ Ext.define('Ext.data.reader.Json', {
                 operatorSearch;
 
             if (typeof map === 'function') {
-                result = fieldVarName + '.mapping(' + dataName + ', this)';
+                result = fieldVarName + '.mapper(' + dataName + ', this)';
             } else if (this.useSimpleAccessors === true || ((operatorSearch = String(map).search(re)) < 0)) {
                 if (!hasMap || isNaN(map)) {
                     
@@ -66734,7 +66734,7 @@ Ext.define('Ext.data.reader.Array', {
             result;
 
         if (typeof index === 'function') {
-            result = fieldVarName + '.mapping(' + dataName + ', this)';
+            result = fieldVarName + '.mapper(' + dataName + ', this)';
         } else {
             if (isNaN(index)) {
                 index = '"' + index + '"';
@@ -69726,7 +69726,7 @@ Ext.define('Ext.data.reader.Xml', {
             result;
 
         if (typeof selector === 'function') {
-            result = fieldVarName + '.mapping(' + dataName + ', this)';
+            result = fieldVarName + '.mapper(' + dataName + ', this)';
         } else {
             result = 'me.getNodeValue(Ext.DomQuery.selectNode("' + selector + '", ' + dataName + '))';
         }

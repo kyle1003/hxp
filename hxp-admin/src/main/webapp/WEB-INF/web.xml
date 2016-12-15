@@ -83,6 +83,7 @@
         <servlet-name>dispatcher</servlet-name>
         <url-pattern>*.hxp</url-pattern>
     </servlet-mapping>
+
    <!--欢迎页面-->
     <welcome-file-list>
         <welcome-file>/index</welcome-file>

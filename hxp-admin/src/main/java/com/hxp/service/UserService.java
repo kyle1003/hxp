@@ -10,5 +10,5 @@ import com.hxp.model.User;
 public interface UserService {
 
     //通过用户名及密码核查用户登录
-    public User checkLogin(String username, String password);
+    public boolean isExist(String username, String password);
 }

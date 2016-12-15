@@ -101,7 +101,8 @@
         </div>
         <div class="login-content ">
             <div class="form">
-                <form method="post"  name="login">
+                <form id ="login" name="login" method="post" >
+                    <div id="info"></div>
                     <tr>
                         <td width="150" height="29" align="center"></td>
                         <td width="*" id="log" style="color: #FF0000"></td>
@@ -111,6 +112,7 @@
                             <div class="input-group">
                                 <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
                                 <input type="text" id="username" name="username" class="form-control" placeholder="用户名">
+                                <span  id="msg1"  style="color: #ff0000"></span>
                             </div>
                         </div>
                     </div>
@@ -119,12 +121,13 @@
                             <div class="input-group">
                                 <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
                                 <input type="text" id="password" name="password" class="form-control" placeholder="密码">
+                                <span  id="msg2"  style="color: #ff0000"></span>
                             </div>
                         </div>
                     </div>
                     <div class="form-group form-actions"id="login">
                         <div class="col-xs-4 col-xs-offset-4 ">
-                            <button type="submit"  class="btn btn-sm btn-info" ><span class="glyphicon glyphicon-off" ></span> 登录</button>
+                            <button  id = "login"  onclick="login()"  class="btn btn-sm btn-info" ><span class="glyphicon glyphicon-off" ></span> 登录</button>
                         </div>
                     </div>
                     <div class="form-group">
@@ -149,22 +152,40 @@
 <script src="/resources/js/jquery.form.js" type="text/javascript"></script>
 
 <script type="text/javascript">
-    $(function () {
-        $("#login").click(function () {
-          var username =document.getElementById("username").value;
-          var password = document.getElementById("password").value;
-            if(username == null || username ==""){
-                alert("请正确输入账号");
-                return false;
+
+    $(document).ready(function check() {
+        //判断用户名是否为空
+        $("username").blur("click",function () {
+            var username = $("#username").val();//获取用户名文本框的值
+            if (username == null || username == "") {//验证是否为空
+                $("#msg1").html("Username cannot be empty");
+            } else {
+                $("#msg1").html("");
             }
-            if（password == null ||password == "" ）{
-                alert("请正确输入密码");
-                return false;
+        });
+
+        //判断密码是否为空
+        $("#password").blur("click",function () {//绑定文本框失去焦点事件
+            var password =$("#password").val();//获取密码文本框的值
+            if(password == null || password == ""){//验证是否为空
+                $("#msg2").html("Password cannot be empty");
+            }else{
+                $("#msg2").html("");
             }
-            return true;
         });
     });
 
+     function login() {
+         $(function () {
+             $.post("login.do",
+                     {  username:$("#username").val(),
+                         password:$("#password").val(),
+                         function(data){
+                             $("#info").replaceWith('<div id="info">'+ data + '</div>');
+                         });
+
+               });
+     }
 </script>
 
 </html>

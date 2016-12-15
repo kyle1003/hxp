@@ -139,14 +139,14 @@ module.exports = function(params) {
 
 
  //in our page's data file, we save short script/style names, which we must map to original file names
- //this way we can easily only change the script-mapping file and changes will be reflected
+ //this way we can easily only change the script-mapper file and changes will be reflected
  var map_script_names = function() {
 	var mappables = ["script" , "style"]
 	for(var m in mappables) {
 	  var which = mappables[m]
 	  if($vars[which+'s']) {//if we have $vars["scripts"] or $vars["styles"]
 		var page_scripts = $vars[which+'s'];
-		var map_json = JSON.parse(fs.readFileSync($data_dir + "/common/"+which+"-mapping"+(params.path['minified'] ? '.min' : '')+".json"));
+		var map_json = JSON.parse(fs.readFileSync($data_dir + "/common/"+which+"-mapper"+(params.path['minified'] ? '.min' : '')+".json"));
 		var mapped_scripts = [];
 		for(var i in page_scripts) {
 			if(page_scripts[i] in map_json) {
