@@ -66,7 +66,7 @@
     }
 
     function link(){
-        document.getElementById("fom").action="xiangmu.htm";
+        document.getElementById("fom").action="xiangmu.ftl";
         document.getElementById("fom").submit();
     }
 
@@ -88,17 +88,19 @@
         <tr>
             <td height="30"><table width="100%" border="0" cellspacing="0" cellpadding="0">
                 <tr>
-                    <td height="62" background="../images/nav04.gif"><table width="98%" border="0" align="center" cellpadding="0" cellspacing="0">
-                        <tr>
-                            <td width="24"><img src="../images/ico07.gif" width="20" height="18" /></td>
-                            <td width="519"><label>项目名称:
-                                <input name="text" type="text" nam="gongs" />
-                            </label>
-                                </input>
-                                <input name="Submit3" type="button" class="right-button02" value="查 询" /></td>
-                            <td width="679" align="left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </td>
-                        </tr>
-                    </table></td>
+                    <td height="62" background="../images/nav04.gif">
+
+                        <table width="98%" border="0" align="center" cellpadding="0" cellspacing="0">
+                            <tr>
+                                <td width="21"><img src="../images/ico07.gif" width="20" height="18" /></td>
+                                <td width="550">查看内容：按时间：
+                                    <input name="textfield" type="text" size="12" readonly="readonly"/><span class="newfont06">至</span>
+                                    <input name="textfield" type="text" size="12" readonly="readonly"/>
+                                    <input name="Submit" type="button" class="right-button02" value="查 询" /></td>
+                                <td width="132" align="left"><a href="#" onclick="sousuo()">
+                                    <input name="Submit" type="button" class="right-button07" value="高级搜索" /></a></td>
+                            </tr>
+                        </table></td>
                 </tr>
             </table></td>
         </tr>
@@ -117,107 +119,115 @@
                             <td height="40" class="font42"><table width="100%" border="0" cellpadding="4" cellspacing="1" bgcolor="#464646" class="newfont03">
 
                                 <tr>
-                                    <td height="20" colspan="8" align="center" bgcolor="#EEEEEE"class="tablestyle_title"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 项目信息列表 &nbsp;</td>
+                                    <td height="20" colspan="13" align="center" bgcolor="#EEEEEE"class="tablestyle_title"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 项目信息列表 &nbsp;</td>
                                 </tr>
                                 <tr>
-                                    <td width="4%" align="center" bgcolor="#EEEEEE">选择</td>
-                                    <td width="13%" height="20" align="center" bgcolor="#EEEEEE">项目名称</td>
-                                    <td width="10%" align="center" bgcolor="#EEEEEE">项目负责人</td>
-                                    <td width="7%" align="center" bgcolor="#EEEEEE">实际开发日期</td>
-                                    <td width="8%" align="center" bgcolor="#EEEEEE">实际完成日期</td>
-                                    <td width="7%" align="center" bgcolor="#EEEEEE">任务优先级</td>
-                                    <td width="6%" align="center" bgcolor="#EEEEEE">完成状态</td>
-                                    <td width="6%" align="center" bgcolor="#EEEEEE">操作</td>
+                                    <td width="5%" align="center" bgcolor="#EEEEEE">选择</td>
+                                    <td width="10%" height="20" align="center" bgcolor="#EEEEEE">项目名称</td>
+                                    <td width="10%" align="center" bgcolor="#EEEEEE">客户名称</td>
+                                    <td width="10%" align="center" bgcolor="#EEEEEE">项目经理</td>
+                                    <td width="5%" align="center" bgcolor="#EEEEEE">开发人数</td>
+                                    <td width="10%" align="center" bgcolor="#EEEEEE">立项时间</td>
+                                    <td width="10%" align="center" bgcolor="#EEEEEE">更新时间</td>
+                                    <td width="6%" align="center" bgcolor="#EEEEEE">任务优先级</td>
+                                    <td width="5%" align="center" bgcolor="#EEEEEE">状态</td>
+                                    <td width="10%" align="center" bgcolor="#EEEEEE">操作</td>
                                 </tr>
-                                <tr>
+                                <tr align="center">
                                     <td bgcolor="#FFFFFF"><input type="checkbox" name="delid"/></td>
-                                    <td height="20" bgcolor="#FFFFFF">流动人口项目</td>
+                                    <td height="20" bgcolor="#FFFFFF"><a href="xiangmuzongbiao.ftl">种子OA系统</a></td>
+                                    <td bgcolor="#FFFFFF">种子公司</td>
                                     <td bgcolor="#FFFFFF">张三</td>
+                                    <td bgcolor="#FFFFFF">5</td>
                                     <td bgcolor="#FFFFFF">2007-11-11</td>
-                                    <td bgcolor="#FFFFFF">2007-12-12</td>
+                                    <td bgcolor="#FFFFFF">2007-11-11</td>
                                     <td bgcolor="#FFFFFF">急</td>
-                                    <td bgcolor="#FFFFFF">已经完成</td>
-                                    <td bgcolor="#FFFFFF"><a href="xiangmu.ftl">编辑</a></td>
+                                    <td bgcolor="#FFFFFF">完成</td>
+                                    <td bgcolor="#FFFFFF"><a href="editxiangmu.ftl">编辑</a>|<a href="listxiangmumingxi.ftl">查看</a></td>
                                 </tr>
-                                <tr>
+                                <tr align="center">
                                     <td bgcolor="#FFFFFF"><input type="checkbox" name="delid"/></td>
-                                    <td height="20" bgcolor="#FFFFFF">gezhaofeng</td>
+                                    <td height="20" bgcolor="#FFFFFF"><a href="xiangmuzongbiao.ftl">种子OA系统</a></td>
+                                    <td bgcolor="#FFFFFF">种子公司</td>
                                     <td bgcolor="#FFFFFF">张三</td>
+                                    <td bgcolor="#FFFFFF">5</td>
                                     <td bgcolor="#FFFFFF">2007-11-11</td>
-                                    <td bgcolor="#FFFFFF">2007-12-12</td>
+                                    <td bgcolor="#FFFFFF">2007-11-11</td>
                                     <td bgcolor="#FFFFFF">急</td>
-                                    <td bgcolor="#FFFFFF">已经完成</td>
-                                    <td bgcolor="#FFFFFF"><a href="xiangmu.ftl">编辑</a></td>
+                                    <td bgcolor="#FFFFFF">完成</td>
+                                    <td bgcolor="#FFFFFF"><a href="editxiangmu.ftl">编辑</a>|<a href="listxiangmumingxi.ftl">查看</a></td>
                                 </tr>
-                                <tr>
+                                <tr align="center">
                                     <td bgcolor="#FFFFFF"><input type="checkbox" name="delid"/></td>
-                                    <td bgcolor="#FFFFFF">gezhaofeng</td>
+                                    <td height="20" bgcolor="#FFFFFF"><a href="xiangmuzongbiao.ftl">种子OA系统</a></td>
+                                    <td bgcolor="#FFFFFF">种子公司</td>
                                     <td bgcolor="#FFFFFF">张三</td>
+                                    <td bgcolor="#FFFFFF">5</td>
                                     <td bgcolor="#FFFFFF">2007-11-11</td>
-                                    <td bgcolor="#FFFFFF">2007-12-12</td>
+                                    <td bgcolor="#FFFFFF">2007-11-11</td>
                                     <td bgcolor="#FFFFFF">急</td>
-                                    <td bgcolor="#FFFFFF">已经完成</td>
-                                    <td bgcolor="#FFFFFF"><a href="xiangmu.ftl">编辑</a></td>
+                                    <td bgcolor="#FFFFFF">完成</td>
+                                    <td bgcolor="#FFFFFF"><a href="editxiangmu.ftl">编辑</a>|<a href="listxiangmumingxi.ftl">查看</a></td>
                                 </tr>
-                                <tr>
+                                <tr align="center">
                                     <td bgcolor="#FFFFFF"><input type="checkbox" name="delid"/></td>
-                                    <td bgcolor="#FFFFFF">gezhaofeng</td>
+                                    <td height="20" bgcolor="#FFFFFF"><a href="xiangmuzongbiao.ftl">种子OA系统</a></td>
+                                    <td bgcolor="#FFFFFF">种子公司</td>
                                     <td bgcolor="#FFFFFF">张三</td>
+                                    <td bgcolor="#FFFFFF">5</td>
                                     <td bgcolor="#FFFFFF">2007-11-11</td>
-                                    <td bgcolor="#FFFFFF">2007-12-12</td>
+                                    <td bgcolor="#FFFFFF">2007-11-11</td>
                                     <td bgcolor="#FFFFFF">急</td>
-                                    <td bgcolor="#FFFFFF">已经完成</td>
-                                    <td bgcolor="#FFFFFF"><a href="xiangmu.ftl">编辑</a></td>
+                                    <td bgcolor="#FFFFFF">完成</td>
+                                    <td bgcolor="#FFFFFF"><a href="editxiangmu.ftl">编辑</a>|<a href="listxiangmumingxi.ftl">查看</a></td>
                                 </tr>
-                                <tr>
+                                <tr align="center">
                                     <td bgcolor="#FFFFFF"><input type="checkbox" name="delid"/></td>
-                                    <td bgcolor="#FFFFFF">gezhaofeng</td>
+                                    <td height="20" bgcolor="#FFFFFF"><a href="xiangmuzongbiao.ftl">种子OA系统</a></td>
+                                    <td bgcolor="#FFFFFF">种子公司</td>
                                     <td bgcolor="#FFFFFF">张三</td>
+                                    <td bgcolor="#FFFFFF">5</td>
                                     <td bgcolor="#FFFFFF">2007-11-11</td>
-                                    <td bgcolor="#FFFFFF">2007-12-12</td>
+                                    <td bgcolor="#FFFFFF">2007-11-11</td>
                                     <td bgcolor="#FFFFFF">急</td>
-                                    <td bgcolor="#FFFFFF">已经完成</td>
-                                    <td bgcolor="#FFFFFF"><a href="xiangmu.ftl">编辑</a></td>
+                                    <td bgcolor="#FFFFFF">完成</td>
+                                    <td bgcolor="#FFFFFF"><a href="editxiangmu.ftl">编辑</a>|<a href="listxiangmumingxi.ftl">查看</a></td>
                                 </tr>
-                                <tr>
+                                <tr align="center">
                                     <td bgcolor="#FFFFFF"><input type="checkbox" name="delid"/></td>
-                                    <td bgcolor="#FFFFFF">gezhaofeng</td>
+                                    <td height="20" bgcolor="#FFFFFF"><a href="xiangmuzongbiao.ftl">种子OA系统</a></td>
+                                    <td bgcolor="#FFFFFF">种子公司</td>
                                     <td bgcolor="#FFFFFF">张三</td>
+                                    <td bgcolor="#FFFFFF">5</td>
                                     <td bgcolor="#FFFFFF">2007-11-11</td>
-                                    <td bgcolor="#FFFFFF">2007-12-12</td>
+                                    <td bgcolor="#FFFFFF">2007-11-11</td>
                                     <td bgcolor="#FFFFFF">急</td>
-                                    <td bgcolor="#FFFFFF">已经完成</td>
-                                    <td bgcolor="#FFFFFF"><a href="xiangmu.ftl">编辑</a></td>
+                                    <td bgcolor="#FFFFFF">完成</td>
+                                    <td bgcolor="#FFFFFF"><a href="editxiangmu.ftl">编辑</a>|<a href="listxiangmumingxi.ftl">查看</a></td>
                                 </tr>
-                                <tr>
+                                <tr align="center">
                                     <td bgcolor="#FFFFFF"><input type="checkbox" name="delid"/></td>
-                                    <td bgcolor="#FFFFFF">gezhaofeng</td>
+                                    <td height="20" bgcolor="#FFFFFF"><a href="xiangmuzongbiao.ftl">种子OA系统</a></td>
+                                    <td bgcolor="#FFFFFF">种子公司</td>
                                     <td bgcolor="#FFFFFF">张三</td>
+                                    <td bgcolor="#FFFFFF">5</td>
                                     <td bgcolor="#FFFFFF">2007-11-11</td>
-                                    <td bgcolor="#FFFFFF">2007-12-12</td>
+                                    <td bgcolor="#FFFFFF">2007-11-11</td>
                                     <td bgcolor="#FFFFFF">急</td>
-                                    <td bgcolor="#FFFFFF">已经完成</td>
-                                    <td bgcolor="#FFFFFF"><a href="xiangmu.ftl">编辑</a></td>
+                                    <td bgcolor="#FFFFFF">完成</td>
+                                    <td bgcolor="#FFFFFF"><a href="editxiangmu.ftl">编辑</a>|<a href="listxiangmumingxi.ftl">查看</a></td>
                                 </tr>
-                                <tr>
+                                <tr align="center">
                                     <td bgcolor="#FFFFFF"><input type="checkbox" name="delid"/></td>
-                                    <td bgcolor="#FFFFFF">gezhaofeng</td>
+                                    <td height="20" bgcolor="#FFFFFF"><a href="xiangmuzongbiao.ftl">种子OA系统</a></td>
+                                    <td bgcolor="#FFFFFF">种子公司</td>
                                     <td bgcolor="#FFFFFF">张三</td>
+                                    <td bgcolor="#FFFFFF">5</td>
                                     <td bgcolor="#FFFFFF">2007-11-11</td>
-                                    <td bgcolor="#FFFFFF">2007-12-12</td>
-                                    <td bgcolor="#FFFFFF">急</td>
-                                    <td bgcolor="#FFFFFF">已经完成</td>
-                                    <td bgcolor="#FFFFFF"><a href="xiangmu.ftl">编辑</a></td>
-                                </tr>
-                                <tr>
-                                    <td bgcolor="#FFFFFF"><input type="checkbox" name="delid"/></td>
-                                    <td bgcolor="#FFFFFF">gezhaofeng</td>
-                                    <td bgcolor="#FFFFFF">张三</td>
                                     <td bgcolor="#FFFFFF">2007-11-11</td>
-                                    <td bgcolor="#FFFFFF">2007-12-12</td>
                                     <td bgcolor="#FFFFFF">急</td>
-                                    <td bgcolor="#FFFFFF">已经完成</td>
-                                    <td bgcolor="#FFFFFF"><a href="xiangmu.ftl">编辑</a></td>
+                                    <td bgcolor="#FFFFFF">完成</td>
+                                    <td bgcolor="#FFFFFF"><a href="editxiangmu.ftl">编辑</a>|<a href="listxiangmumingxi.ftl">查看</a></td>
                                 </tr>
                             </table></td>
                         </tr>

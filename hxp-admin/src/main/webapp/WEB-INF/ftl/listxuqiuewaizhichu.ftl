@@ -39,8 +39,10 @@
     </style>
 
     <link href="../css/css.css" rel="stylesheet" type="text/css" />
+    <script type="text/JavaScript">
+
+    </script>
     <link href="../css/style.css" rel="stylesheet" type="text/css" />
-    <script type="text/javascript" src="../js/xiangmu.js"></script>
 </head>
 <SCRIPT language=JavaScript>
     function sousuo(){
@@ -66,158 +68,152 @@
     }
 
     function link(){
-        document.getElementById("fom").action="xiangmu.htm";
+        document.getElementById("fom").action="xiangmugongnen.ftl";
         document.getElementById("fom").submit();
-    }
-
-    function on_load(){
-        var loadingmsg=document.getElementById("loadingmsg");
-        var mainpage=document.getElementById("mainpage");
-        loadingmsg.style.display="";
-        mainpage.style.display="none";
-
-        loadingmsg.style.display="none";
-        mainpage.style.display="";
     }
 </SCRIPT>
 
-<body onload="on_load()">
-<form name="fom" id="fom" method="post" action="">
-    <table id="mainpage" width="100%" border="0" cellspacing="0" cellpadding="0">
+<body>
+<form name="fom" id="fom" method="post">
+    <table width="100%" border="0" cellspacing="0" cellpadding="0">
 
         <tr>
-            <td height="30"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+            <td height="30">      <table width="100%" border="0" cellspacing="0" cellpadding="0">
                 <tr>
-                    <td height="62" background="../images/nav04.gif"><table width="98%" border="0" align="center" cellpadding="0" cellspacing="0">
-                        <tr>
-                            <td width="24"><img src="../images/ico07.gif" width="20" height="18" /></td>
-                            <td width="519"><label>项目名称:
-                                <input name="text" type="text" nam="gongs" />
-                            </label>
-                                </input>
-                                <input name="Submit3" type="button" class="right-button02" value="查 询" /></td>
-                            <td width="679" align="left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </td>
-                        </tr>
-                    </table></td>
+                    <td height="62" background="../images/nav04.gif">
+
+                        <table width="98%" border="0" align="center" cellpadding="0" cellspacing="0">
+                            <tr>
+                                <td width="21"><img src="../images/ico07.gif" width="20" height="18" /></td>
+                                <td width="332"><p>查看内容：			    按时间：
+                                    <input name="textfield" type="text" size="12" readonly="readonly"/>
+                                    <span class="newfont06">至</span>
+                                    <input name="textfield" type="text" size="12" readonly="readonly"/>
+                                    <input name="Submit" type="button" class="right-button02" value="查 询" />
+                                </p>
+                                </td>
+                                <td width="350" align="left"><a href="#" onclick="sousuo()">
+                                    <input name="Submit" type="button" class="right-button07" value="高级搜索" />
+                                </a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                            </tr>
+                        </table></td>
                 </tr>
-            </table></td>
-        </tr>
+            </table></td></tr>
         <tr>
             <td><table id="subtree1" style="DISPLAY: " width="100%" border="0" cellspacing="0" cellpadding="0">
-
                 <tr>
                     <td><table width="95%" border="0" align="center" cellpadding="0" cellspacing="0">
-
                         <tr>
                             <td height="20"><span class="newfont07">选择：<a href="#" class="right-font08" onclick="selectAll();">全选</a>-<a href="#" class="right-font08" onclick="unselectAll();">反选</a></span>
-                                <input name="Submit" type="button" class="right-button08" value="删除所选项目信息" />
-                                <input name="Submit2" type="button" class="right-button08" value="添加项目" onclick="link();"/></td>
+                                <input name="Submit" type="button" class="right-button08" value="删除所选需求信息" />
+                                <input name="Submit2" type="button" class="right-button08" value="添加支出详细信息" onclick="link();" />
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </td>
                         </tr>
                         <tr>
                             <td height="40" class="font42"><table width="100%" border="0" cellpadding="4" cellspacing="1" bgcolor="#464646" class="newfont03">
 
                                 <tr>
-                                    <td height="20" colspan="8" align="center" bgcolor="#EEEEEE"class="tablestyle_title"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 项目信息列表 &nbsp;</td>
+                                    <td height="20" colspan="9" align="center" bgcolor="#EEEEEE"class="tablestyle_title"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 支出列表 &nbsp;</td>
                                 </tr>
                                 <tr>
-                                    <td width="4%" align="center" bgcolor="#EEEEEE">选择</td>
-                                    <td width="13%" height="20" align="center" bgcolor="#EEEEEE">项目名称</td>
-                                    <td width="10%" align="center" bgcolor="#EEEEEE">项目负责人</td>
-                                    <td width="7%" align="center" bgcolor="#EEEEEE">实际开发日期</td>
-                                    <td width="8%" align="center" bgcolor="#EEEEEE">实际完成日期</td>
-                                    <td width="7%" align="center" bgcolor="#EEEEEE">任务优先级</td>
-                                    <td width="6%" align="center" bgcolor="#EEEEEE">完成状态</td>
-                                    <td width="6%" align="center" bgcolor="#EEEEEE">操作</td>
+                                    <td width="4%" height="20" align="center" bgcolor="#EEEEEE">选择</td>
+                                    <td width="10%" align="center" bgcolor="#EEEEEE">支出名称</td>
+                                    <td width="9%" align="center" bgcolor="#EEEEEE">项目名称</td>
+                                    <td width="12%" align="center" bgcolor="#EEEEEE">支出金额</td>
+                                    <td width="12%" align="center" bgcolor="#EEEEEE">经办人</td>
+                                    <td width="12%" align="center" bgcolor="#EEEEEE">支出日期</td>
+                                    <td width="11%" align="center" bgcolor="#EEEEEE">备注</td>
+                                    <td width="8%" align="center" bgcolor="#EEEEEE">操作</td>
+                                </tr>
+                                <tr>
+                                    <td height="20" bgcolor="#FFFFFF"><input type="checkbox" name="delid"/></td>
+                                    <td bgcolor="#FFFFFF">aaaa</td>
+                                    <td bgcolor="#FFFFFF">aaaa</td>
+                                    <td bgcolor="#FFFFFF">20071</td>
+                                    <td bgcolor="#FFFFFF">张三</td>
+                                    <td bgcolor="#FFFFFF">2007-12-12</td>
+                                    <td bgcolor="#FFFFFF">&nbsp;</td>
+                                    <td bgcolor="#FFFFFF"><a href="#">编辑</a></td>
+                                </tr>
+                                <tr>
+                                    <td height="20" bgcolor="#FFFFFF"><input type="checkbox" name="delid"/></td>
+                                    <td bgcolor="#FFFFFF">aaaa</td>
+                                    <td bgcolor="#FFFFFF">aaaa</td>
+                                    <td bgcolor="#FFFFFF">200711</td>
+                                    <td bgcolor="#FFFFFF">张三</td>
+                                    <td bgcolor="#FFFFFF">2007-12-12</td>
+                                    <td bgcolor="#FFFFFF">&nbsp;</td>
+                                    <td bgcolor="#FFFFFF"><a href="#">编辑</a></td>
+                                </tr>
+                                <tr>
+                                    <td height="41" bgcolor="#FFFFFF"><input type="checkbox" name="delid"/></td>
+                                    <td bgcolor="#FFFFFF">aaaa</td>
+                                    <td bgcolor="#FFFFFF">aaaa</td>
+                                    <td bgcolor="#FFFFFF">200711</td>
+                                    <td bgcolor="#FFFFFF">张三</td>
+                                    <td bgcolor="#FFFFFF">2007-12-12</td>
+                                    <td bgcolor="#FFFFFF">&nbsp;</td>
+                                    <td bgcolor="#FFFFFF"><a href="#">编辑</a></td>
                                 </tr>
                                 <tr>
                                     <td bgcolor="#FFFFFF"><input type="checkbox" name="delid"/></td>
-                                    <td height="20" bgcolor="#FFFFFF">流动人口项目</td>
+                                    <td bgcolor="#FFFFFF">aaaa</td>
+                                    <td bgcolor="#FFFFFF">aaaa</td>
+                                    <td bgcolor="#FFFFFF">200711</td>
                                     <td bgcolor="#FFFFFF">张三</td>
-                                    <td bgcolor="#FFFFFF">2007-11-11</td>
                                     <td bgcolor="#FFFFFF">2007-12-12</td>
-                                    <td bgcolor="#FFFFFF">急</td>
-                                    <td bgcolor="#FFFFFF">已经完成</td>
-                                    <td bgcolor="#FFFFFF"><a href="xiangmu.ftl">编辑</a></td>
+                                    <td bgcolor="#FFFFFF">&nbsp;</td>
+                                    <td bgcolor="#FFFFFF"><a href="#">编辑</a></td>
                                 </tr>
                                 <tr>
                                     <td bgcolor="#FFFFFF"><input type="checkbox" name="delid"/></td>
-                                    <td height="20" bgcolor="#FFFFFF">gezhaofeng</td>
+                                    <td bgcolor="#FFFFFF">aaaa</td>
+                                    <td bgcolor="#FFFFFF">aaaa</td>
+                                    <td bgcolor="#FFFFFF">200711</td>
                                     <td bgcolor="#FFFFFF">张三</td>
-                                    <td bgcolor="#FFFFFF">2007-11-11</td>
                                     <td bgcolor="#FFFFFF">2007-12-12</td>
-                                    <td bgcolor="#FFFFFF">急</td>
-                                    <td bgcolor="#FFFFFF">已经完成</td>
-                                    <td bgcolor="#FFFFFF"><a href="xiangmu.ftl">编辑</a></td>
+                                    <td bgcolor="#FFFFFF">&nbsp;</td>
+                                    <td bgcolor="#FFFFFF"><a href="#">编辑</a></td>
                                 </tr>
                                 <tr>
                                     <td bgcolor="#FFFFFF"><input type="checkbox" name="delid"/></td>
-                                    <td bgcolor="#FFFFFF">gezhaofeng</td>
+                                    <td bgcolor="#FFFFFF">aaaa</td>
+                                    <td bgcolor="#FFFFFF">aaaa</td>
+                                    <td bgcolor="#FFFFFF">200711</td>
                                     <td bgcolor="#FFFFFF">张三</td>
-                                    <td bgcolor="#FFFFFF">2007-11-11</td>
                                     <td bgcolor="#FFFFFF">2007-12-12</td>
-                                    <td bgcolor="#FFFFFF">急</td>
-                                    <td bgcolor="#FFFFFF">已经完成</td>
-                                    <td bgcolor="#FFFFFF"><a href="xiangmu.ftl">编辑</a></td>
+                                    <td bgcolor="#FFFFFF">&nbsp;</td>
+                                    <td bgcolor="#FFFFFF"><a href="#">编辑</a></td>
                                 </tr>
                                 <tr>
                                     <td bgcolor="#FFFFFF"><input type="checkbox" name="delid"/></td>
-                                    <td bgcolor="#FFFFFF">gezhaofeng</td>
+                                    <td bgcolor="#FFFFFF">aaaa</td>
+                                    <td bgcolor="#FFFFFF">aaaa</td>
+                                    <td bgcolor="#FFFFFF">200711</td>
                                     <td bgcolor="#FFFFFF">张三</td>
-                                    <td bgcolor="#FFFFFF">2007-11-11</td>
                                     <td bgcolor="#FFFFFF">2007-12-12</td>
-                                    <td bgcolor="#FFFFFF">急</td>
-                                    <td bgcolor="#FFFFFF">已经完成</td>
-                                    <td bgcolor="#FFFFFF"><a href="xiangmu.ftl">编辑</a></td>
+                                    <td bgcolor="#FFFFFF">&nbsp;</td>
+                                    <td bgcolor="#FFFFFF"><a href="#">编辑</a></td>
                                 </tr>
                                 <tr>
                                     <td bgcolor="#FFFFFF"><input type="checkbox" name="delid"/></td>
-                                    <td bgcolor="#FFFFFF">gezhaofeng</td>
+                                    <td bgcolor="#FFFFFF">aaaa</td>
+                                    <td bgcolor="#FFFFFF">aaaa</td>
+                                    <td bgcolor="#FFFFFF">200711</td>
                                     <td bgcolor="#FFFFFF">张三</td>
-                                    <td bgcolor="#FFFFFF">2007-11-11</td>
-                                    <td bgcolor="#FFFFFF">2007-12-12</td>
-                                    <td bgcolor="#FFFFFF">急</td>
-                                    <td bgcolor="#FFFFFF">已经完成</td>
-                                    <td bgcolor="#FFFFFF"><a href="xiangmu.ftl">编辑</a></td>
+                                    <td bgcolor="#FFFFFF">2008-1-1</td>
+                                    <td bgcolor="#FFFFFF">&nbsp;</td>
+                                    <td bgcolor="#FFFFFF"><a href="#">编辑</a></td>
                                 </tr>
                                 <tr>
                                     <td bgcolor="#FFFFFF"><input type="checkbox" name="delid"/></td>
-                                    <td bgcolor="#FFFFFF">gezhaofeng</td>
+                                    <td bgcolor="#FFFFFF">aaaa</td>
+                                    <td bgcolor="#FFFFFF">aaaa</td>
+                                    <td bgcolor="#FFFFFF">200711</td>
                                     <td bgcolor="#FFFFFF">张三</td>
-                                    <td bgcolor="#FFFFFF">2007-11-11</td>
-                                    <td bgcolor="#FFFFFF">2007-12-12</td>
-                                    <td bgcolor="#FFFFFF">急</td>
-                                    <td bgcolor="#FFFFFF">已经完成</td>
-                                    <td bgcolor="#FFFFFF"><a href="xiangmu.ftl">编辑</a></td>
-                                </tr>
-                                <tr>
-                                    <td bgcolor="#FFFFFF"><input type="checkbox" name="delid"/></td>
-                                    <td bgcolor="#FFFFFF">gezhaofeng</td>
-                                    <td bgcolor="#FFFFFF">张三</td>
-                                    <td bgcolor="#FFFFFF">2007-11-11</td>
-                                    <td bgcolor="#FFFFFF">2007-12-12</td>
-                                    <td bgcolor="#FFFFFF">急</td>
-                                    <td bgcolor="#FFFFFF">已经完成</td>
-                                    <td bgcolor="#FFFFFF"><a href="xiangmu.ftl">编辑</a></td>
-                                </tr>
-                                <tr>
-                                    <td bgcolor="#FFFFFF"><input type="checkbox" name="delid"/></td>
-                                    <td bgcolor="#FFFFFF">gezhaofeng</td>
-                                    <td bgcolor="#FFFFFF">张三</td>
-                                    <td bgcolor="#FFFFFF">2007-11-11</td>
-                                    <td bgcolor="#FFFFFF">2007-12-12</td>
-                                    <td bgcolor="#FFFFFF">急</td>
-                                    <td bgcolor="#FFFFFF">已经完成</td>
-                                    <td bgcolor="#FFFFFF"><a href="xiangmu.ftl">编辑</a></td>
-                                </tr>
-                                <tr>
-                                    <td bgcolor="#FFFFFF"><input type="checkbox" name="delid"/></td>
-                                    <td bgcolor="#FFFFFF">gezhaofeng</td>
-                                    <td bgcolor="#FFFFFF">张三</td>
-                                    <td bgcolor="#FFFFFF">2007-11-11</td>
-                                    <td bgcolor="#FFFFFF">2007-12-12</td>
-                                    <td bgcolor="#FFFFFF">急</td>
-                                    <td bgcolor="#FFFFFF">已经完成</td>
-                                    <td bgcolor="#FFFFFF"><a href="xiangmu.ftl">编辑</a></td>
+                                    <td bgcolor="#FFFFFF">2008-1-1</td>
+                                    <td bgcolor="#FFFFFF">&nbsp;</td>
+                                    <td bgcolor="#FFFFFF"><a href="#">编辑</a></td>
                                 </tr>
                             </table></td>
                         </tr>
@@ -247,10 +243,5 @@
         </tr>
     </table>
 </form>
-
-<div id="loadingmsg" style="width:100px; height:18px; top:0px; display:none;">
-    <img src="file:///F|/项目管理相关资料/项目管理系统页面/images/loadon.gif" />
-</div>
-
 </body>
 </html>
